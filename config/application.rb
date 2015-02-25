@@ -23,6 +23,7 @@ module EBearFM
     # Load lib files
     config.autoload_paths += %W(#{config.root}/lib)
 
+    config.active_job.queue_adapter = :delayed_job
 
     config.before_configuration do
         env_file = File.join(Rails.root, 'config', 'environment_variables.yml')

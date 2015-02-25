@@ -28,6 +28,10 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
 gem 'spring',        group: :development
 
+# Styling gems
+gem 'bootstrap-sass'
+gem 'autoprefixer-rails'
+
 # User authentication gem
 gem 'devise'
 
@@ -44,11 +48,13 @@ gem 'youtube_it'
 
 # Utility gems
 gem 'typhoeus'
-gem 'simple_form'
 
-# Styling gems
-gem 'bootstrap-sass'
-gem 'autoprefixer-rails'
+# Scheduling application tasks gem
+gem 'clockwork'
+
+# Running background jobs gem
+gem 'delayed_job'
+gem 'delayed_job_active_record'
 
 group :development, :test do
 	gem 'pry'
