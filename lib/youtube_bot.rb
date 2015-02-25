@@ -2,13 +2,6 @@ class YoutubeBot
 	
 	attr_accessor :client
 
-	# 
-	# Inputs: none
-	# Return: none
-	def initialize
-		
-	end
-
 	# Initialize youtube client based on ebearfm@gmail.com app and gmail credentials
 	# Must initialize client on every restart
 	# Inputs: code: string - code from google auth servers to retrieve access token
