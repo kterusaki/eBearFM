@@ -4,7 +4,10 @@ class User < ActiveRecord::Base
 	devise :database_authenticatable, :registerable,
 		:recoverable, :rememberable, :trackable, :validatable, :omniauthable, :omniauth_providers => [:twitter]
 
-	validates :username, :name, presence: true
+	has_many :tweets
+
+	validates :username, :name, :twitter_id, presence: true
+	validates :twitter_id, uniqueness: true 
 
 	def self.from_omniauth(auth)
 		# Check db if user exists, otherwise create new user record

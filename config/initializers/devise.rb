@@ -255,5 +255,5 @@ Devise.setup do |config|
   #config.omniauth_path_prefix = '/users/auth'
   
   # TODO: Change these to environment vars
-  config.omniauth :twitter, 'NpKvakF9JBjciNqPQTinN5CXX', 'eUJaWfRjDNg8T0HDMGQ7hykYI9tllKuTPVIJTaXlVqvsGr0vNx'
+  config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
 end
