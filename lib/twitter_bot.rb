@@ -74,7 +74,6 @@ class TwitterBot
 	# Return: bool - true if the tweet was saved, false otherwise       
 	def insert_tweet(userId, tweetId, text, video_id, title)
 		twitter_user = User.where(twitter_id: userId.to_i).take
-		binding.pry
 		new_tweet = twitter_user.tweets.new(text: text, tweet_id: tweetId, video_id: video_id, vid_title: title)
 
 		if new_tweet.save == false
