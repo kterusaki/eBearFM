@@ -23,6 +23,8 @@ class TwitterBot
 	def pop_play_queue
 		tweets = self.get_at_mentions(@latest_tweet_id)
 
+		puts "at mention tweets: #{tweets}"
+
 		# Iterate over tweets list in reverse for chronological order
 		tweets.reverse_each do |tweet|
 			if valid_user(tweet.user.id.to_i)
@@ -79,8 +81,11 @@ class TwitterBot
 	def insert_tweet(userId, tweetId, text, video_id, title)
 		twitter_user = User.where(twitter_id: userId.to_i).take
 		
-		new_tweets = twitter_user.tweets.new(text: text, tweet_id: tweetId, video_id: video_id, vid_title: title)
-		new_tweets.save
+		new_tweet = twitter_user.tweets.new(text: text, tweet_id: tweetId, video_id: video_id, vid_title: title)
+
+		if new_tweet.save == false
+			puts "ERROR: could not save new_tweet"			
+		end
 	end
 
 	# Retrieves the url in the tweet text, if it exists
