@@ -10,7 +10,7 @@ class TwitterBot
 			config.access_token = ENV['TWITTER_ACCESS_TOKEN']
 			config.access_token_secret = ENV['TWITTER_ACCESS_TOKEN_SECRET']
 		end
-
+		
 		# Initialize YoutubeBot for retrieving youtube video from url in tweet
 		@youtubeBot = YoutubeBot.new
 	end
@@ -41,7 +41,11 @@ class TwitterBot
 		end
 
 		# Set most recent tweet id to last_tweet_id
-		@latest_tweet_id = tweets.first.id
+		if tweets.size > 0
+			@latest_tweet_id = tweets.first.id
+		end
+
+		puts "latest_tweet_id #{@latest_tweet_id}"
 	end
 
 	# Returns @mention notifications from an authenticated user
