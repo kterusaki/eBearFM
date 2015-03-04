@@ -10,6 +10,6 @@ class TweetPuller
 	end
 
 	def error(job, exception)
-		puts "Delayed job error #{exception}"
+		puts "Delayed job error: #{exception}"
 	end
 end
