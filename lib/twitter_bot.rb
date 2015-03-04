@@ -23,11 +23,9 @@ class TwitterBot
 	def pop_play_queue
 		tweets = self.get_at_mentions(@latest_tweet_id)
 
-		puts "at mention tweets: #{tweets}"
-
 		# Iterate over tweets list in reverse for chronological order
 		tweets.reverse_each do |tweet|
-			if valid_user(tweet.user.id.to_i)
+			if valid_user(tweet.user.id)
 				if valid_tweet(tweet)
 					shortURL = self.get_url(tweet)
 
@@ -42,12 +40,7 @@ class TwitterBot
 			end
 		end
 
-		# Set most recent tweet id to last_tweet_id
-		if tweets.size > 0
-			@latest_tweet_id = tweets.first.id
-		end
-
-		puts "latest_tweet_id #{@latest_tweet_id}"
+		puts "latest tweet id: #{@latest_tweet_id}"
 	end
 
 	# Returns @mention notifications from an authenticated user
@@ -77,14 +70,18 @@ class TwitterBot
 	# =>      tweetId: string - tweet id
 	# =>      text: string - tweet text
 	# =>      video_id: string - youtube video id
-	# =>      title: string - youtube video title       
+	# =>      title: string - youtube video title
+	# Return: bool - true if the tweet was saved, false otherwise       
 	def insert_tweet(userId, tweetId, text, video_id, title)
 		twitter_user = User.where(twitter_id: userId.to_i).take
-		
+		binding.pry
 		new_tweet = twitter_user.tweets.new(text: text, tweet_id: tweetId, video_id: video_id, vid_title: title)
 
 		if new_tweet.save == false
-			puts "ERROR: could not save new_tweet"			
+			puts "ERROR: could not save new_tweet"
+		else
+			# Set most recent tweet id to latest_tweet_id
+			@latest_tweet_id = tweetId		
 		end
 	end
 
@@ -98,10 +95,11 @@ class TwitterBot
 
 
 	# Checks if a user is a registered twitter user
-	# Inputs: twitter_id: integer - id of the twitter user in question
+	# Inputs: twitter_id: string - id of the twitter user in question
 	# Return: boolean - true if the user is a valid user, false otherwise
 	def valid_user(twitter_id)
 		if User.where(twitter_id: twitter_id).blank?
+
 			return false
 		end
 		
