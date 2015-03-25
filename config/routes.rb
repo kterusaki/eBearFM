@@ -7,6 +7,7 @@ Rails.application.routes.draw do
 		:sign_in => "login", :sign_out => "logout", :sign_up => "register" 
 	}
 
+	post '/update' => 'mains#update_tweet'
 	root 'mains#home'
 	# The priority is based upon order of creation: first created -> highest priority.
 	# See how all your routes lay out with "rake routes".

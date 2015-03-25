@@ -3,4 +3,19 @@
 // You can use Sass (SCSS) here: http://sass-lang.com/
 
 @import "bootstrap";
+@import url(http://fonts.googleapis.com/css?family=Lobster|Pacifico|Architects+Daughter|Audiowide|Bangers);
 
+.title {
+	text-align:center;
+	width:100%;
+	height:150px;
+	font-family: 'Bangers', cursive;
+}
+
+h1 { font-size: 115px; }
+
+li { font-family: 'Architects Daughter', cursive; }
+
+.twitter-handle {
+	color: #0084B4;
+}

@@ -38,6 +38,8 @@ class TwitterBot
 					end
 				end
 			end
+
+			# TODO: If valid_user == false, tweet back at user telling them to register at website
 		end
 
 		puts "latest tweet id: #{@latest_tweet_id}"
