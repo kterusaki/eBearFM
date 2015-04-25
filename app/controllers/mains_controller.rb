@@ -2,7 +2,7 @@ class MainsController < ApplicationController
 	respond_to :html, :json
 
 	def home
-		@tweets = Tweet.where(played: false, created_at: (Time.now - 100.day)..Time.now)
+		@tweets = Tweet.where(played: false, user_id: current_user.id, created_at: (Time.now - 100.day)..Time.now)
 
 		respond_to do |format|
 			format.html
