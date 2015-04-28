@@ -38,6 +38,7 @@ gem 'devise'
 # Oauth gems
 gem 'omniauth'
 gem 'omniauth-twitter'
+gem 'omniauth-google-oauth2'
 
 # Twitter Bot gem
 gem 'twitter'

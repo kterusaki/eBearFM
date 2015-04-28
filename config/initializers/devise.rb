@@ -254,6 +254,6 @@ Devise.setup do |config|
   # so you need to do it manually. For the users scope, it would be:
   #config.omniauth_path_prefix = '/users/auth'
   
-  # TODO: Change these to environment vars
   config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
 end

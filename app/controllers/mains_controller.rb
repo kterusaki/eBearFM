@@ -22,6 +22,11 @@ class MainsController < ApplicationController
 		end
 	end
 
+  # TODO: call user method which calls youtube_bot class
+  def playlists
+
+  end
+
 	private
 
 	# Helper method for setting a tweet and corresponding video to played

@@ -32,4 +32,13 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
 		sign_in_and_redirect @user
 	end
+
+	# Pass in current signed in user
+	# This method will only get called when they have already signed in with twitter
+	def google_oauth2
+		@auth = request.env["omniauth.auth"]
+		@user = User.from_omniauth_youtube(request.env["omniauth.auth"], current_user)
+
+		redirect_to playlists_path
+	end
 end
