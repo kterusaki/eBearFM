@@ -22,10 +22,44 @@ class MainsController < ApplicationController
 		end
 	end
 
-  # TODO: call user method which calls youtube_bot class
+  # Retrieves user's youtube playlists
   def playlists
+    youtube_bot = YoutubeBot.new(current_user.google_access_token, current_user.google_refresh_token)
+    @playlists = []
+    begin
+    	pt_pair = youtube_bot.get_playlists 
+    	@playlists = pt_pair[0]
+    	access_token  = pt_pair[1]
+    	#playlist_id = @playlists[0].playlist_id
 
+    	# TODO: for each playlist, retrieve the videos in the playlist
+    	# Create a map, where key is playlist_id and value is array of youtube video objects
+    	# Create method to get videos by playlist
+    	@p_vids = Hash.new # A hash where key is playlist_id and value is an array of videos for that playlist
+    	@playlists.each do |playlist|
+        @p_vids[playlist.playlist_id] = youtube_bot.get_playlist_videos(playlist.playlist_id)
+    	end
+
+    	#binding.pry
+    	#puts format_time(341)
+
+    	# Update google access token if one is returned
+    	if !access_token.nil?
+    		puts "Updating access token"
+    		current_user.update(google_access_token: access_token)
+    	end
+    rescue Exception => error
+    	flash.now[:error] = error.to_s
+    	render 'playlists'
+    end
   end
+
+  # Formats seconds to minutes and seconds
+  # Inputs: seconds - integer
+  # Return: string - formatted like m:ss
+  def format_time(seconds)
+		Time.at(seconds).utc.strftime("%-M:%S")
+	end
 
 	private
 
@@ -38,4 +72,6 @@ class MainsController < ApplicationController
 
 		tweet.save
 	end
+
+	
 end

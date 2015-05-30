@@ -1,0 +1,36 @@
+.playlist-header { font-family: 'Bangers', cursive; }
+
+.pl-row {   margin-bottom: 35px; }
+
+.plist-thumbnail {
+	min-width: 150px;
+}
+
+.playlist-title {
+	margin-top: 0px;
+	margin-bottom: 5px;
+}
+
+.vid-list-wrapper {
+	height: 70px;
+	overflow-y: scroll;
+	min-width: 480px;
+}
+
+.vid-list-wrapper > ul { 
+	-webkit-padding-start: 0px;
+	-webkit-padding-end: 17px; 
+}
+
+li.plist-item {
+	font-size: 12px;
+	list-style-type: none;
+	border-bottom: 1px solid #e2e2e2;
+	font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+}
+
+.plist-item:last-child { border-bottom: none; }
+
+.vid-title, .vid-length { color: #1D1D1D; }
+
+.vid-length { float: right; }

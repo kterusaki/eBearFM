@@ -255,5 +255,14 @@ Devise.setup do |config|
   #config.omniauth_path_prefix = '/users/auth'
   
   config.omniauth :twitter, ENV['TWITTER_CONSUMER_KEY'], ENV['TWITTER_CONSUMER_SECRET']
-  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET']
+
+  # TODO: prevent consent screen from showing every time
+  config.omniauth :google_oauth2, ENV['GOOGLE_CLIENT_ID'], ENV['GOOGLE_CLIENT_SECRET'], {
+      :scope => "email, profile, youtube",
+      :prompt => "select_account",
+      :image_size => 50,
+      :access_type => "offline"
+    }
+
+
 end
